@@ -63,30 +63,45 @@ Visualized distribution of fares, passenger counts, and distances.
 Analyzed correlations and feature relationships using heatmaps and pair plots.
 
 ---
-### `Model Building`
+### `Model Building and Model Performance`
 
 **Linear Regression (Baseline Model)**
 
+Train R² : 0.625 
+Test R² : 0.627
+MAE : 3.116
+MSE : 31.033
+RMSE : 5.571
+Observation: Basic linear relationship, limited fit
+
+
 **Decision Tree Regression**
+
+
+Train R² : 0.817 
+Test R² : 0.793
+MAE : 2.189
+MSE : 17.198
+RMSE : 4.147
+Observation: Better non-linear learning, slight overfitting
 
 **Random Forest Regression (Optimized using RandomizedSearchCV)**
 
+Train R² : 0.970
+Test R² : 0.805
+MAE : 2.129
+MSE : 16.235
+RMSE : 4.029
+Observation: Strong generalization, best performance
+
 **Train-Test Split: 70% training and 30% testing**
-
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=42)
-
-📊 Model Performance
-Model	Train R²	Test R²	MAE	MSE	RMSE	Observation
-Linear Regression	0.625	0.627	3.116	31.033	5.571	Basic linear relationship, limited fit
-Decision Tree Regression	0.817	0.793	2.189	17.198	4.147	Better non-linear learning, slight overfitting
-Random Forest Regression	0.970	0.805	2.129	16.235	4.029	Strong generalization, best performance
-⚙️ Hyperparameter Tuning
+				
+**Hyperparameter Tuning**
 
 Performed RandomizedSearchCV to optimize Random Forest parameters:
 
 print(rs.best_score_)
 print(rs.best_params_)
-
 
 Results:
 
@@ -99,7 +114,8 @@ Best Parameters:
 
 These parameters improved model generalization and reduced variance without overfitting.
 
-💾 Model Saving
+--- 
+### `Model Saving`
 
 Final Random Forest Model was saved using Pickle for deployment:
 
@@ -109,7 +125,8 @@ pickle.dump(rf_model, open('taxi_fare_model.pkl', 'wb'))
 
 This allows easy loading for future predictions or integration into web apps.
 
-🗺️ Visualization Insights
+---
+### `Visualization Insights`
 
 Folium Maps: Displayed pickup and drop-off clusters across city areas.
 
@@ -117,12 +134,14 @@ Distance vs Fare: Clear positive relationship observed.
 
 Outlier Detection: Trips with unrealistic coordinates or extremely high fares were filtered out.
 
-📁 Project Structure
-├── data/
-│   ├── taxi_fare.csv
-├── notebooks/
-│   ├── taxi_fare_prediction.ipynb
-├── models/
-│   ├── taxi_fare_model.pkl
-├── README.md
-└── requirements.txt
+Time of day, traffic, and weather conditions helps in better predictions
+
+--- 
+
+### `Future Improvements`
+
+Use Gradient Boosting or XGBoost for further accuracy improvements.
+
+Build a Streamlit/Flask dashboard to allow real-time fare predictions.
+
+Implement cross-validation for more robust model evaluation.
