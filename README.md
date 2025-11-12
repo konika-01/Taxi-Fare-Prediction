@@ -145,3 +145,6 @@ Use Gradient Boosting or XGBoost for further accuracy improvements.
 Build a Streamlit/Flask dashboard to allow real-time fare predictions.
 
 Implement cross-validation for more robust model evaluation.
+
+--- 
+✍️ Konika Malik.
